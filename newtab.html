@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Artmoney">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lite</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/angular_material.css">
+    <script src="js/jq.js"></script>
+    <script src="js/angular.js"></script>
+</head>
+<body ng-controller="Global as ctrl" ng-cloak>
+<ol><li ng-repeat="x in ctrl.data.tasks track by $index">{{x}} <div class="del" ng-click="ctrl.data.removeItem($index)">x</div></li></ol></h1>
+<md-input-container>
+  <label>New task</label>
+ <input ng-model="task" type="text">
+</md-input-container>
+<md-button class="md-raised" ng-disabled="!task" ng-click="ctrl.data.pushNew()">Button</md-button>
+
+<script src="js/material.js"></script>
+<script src="js/animate.js"></script>
+<script src="js/angular-aria.js"></script>
+<script src="js/angular-messages.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

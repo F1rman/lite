@@ -1,0 +1,26 @@
+{
+  "name": "Lite",
+  "description": "Lite new tab with tasks and clock",
+  "version": "1.0",
+  "incognito": "split",
+  "permissions": ["activeTab"],
+  "chrome_url_overrides": { "newtab": "newtab.html" },
+  "content_scripts": [
+
+    {
+      "css": [
+        "css/angular_material.css"
+      ],
+      "js": [
+        "js/angular.js",
+        "js/animate.js",
+        "js/jq.js",
+        "js/material.js"
+      ],
+      "matches": ["*://*/*"],
+      "run_at": "document_start"
+    }
+
+  ],
+  "manifest_version": 2
+}
