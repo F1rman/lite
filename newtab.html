@@ -11,12 +11,16 @@
     <script src="js/angular.js"></script>
 </head>
 <body ng-controller="Global as ctrl" ng-cloak>
-<ol><li ng-repeat="x in ctrl.data.tasks track by $index">{{x}} <div class="del" ng-click="ctrl.data.removeItem($index)">x</div></li></ol></h1>
+
+<h1>{{date | date:'yyyy-MM-dd HH:mm:ss'}}</h1>
+<h2>{{weather}}</h2>
+
+<ol><li ng-repeat="x in tasks track by $index">{{x}} <div class="del" ng-click="data.removeItem($index)">x</div></li></ol></h1>
 <md-input-container>
   <label>New task</label>
  <input ng-model="task" type="text">
 </md-input-container>
-<md-button class="md-raised" ng-disabled="!task" ng-click="ctrl.data.pushNew()">Button</md-button>
+<md-button class="md-raised" ng-disabled="!task" ng-click="data.pushNew()">Button</md-button>
 
 <script src="js/material.js"></script>
 <script src="js/animate.js"></script>

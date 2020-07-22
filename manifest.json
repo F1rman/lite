@@ -3,7 +3,7 @@
   "description": "Lite new tab with tasks and clock",
   "version": "1.0",
   "incognito": "split",
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "storage", "geolocation"],
   "chrome_url_overrides": { "newtab": "newtab.html" },
   "content_scripts": [
 
