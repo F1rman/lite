@@ -17,8 +17,6 @@
       <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide"><img src="https://picsum.photos/1920" alt=""></div>
-          <div class="swiper-slide"><img src="https://picsum.photos/1920" alt=""></div>
-          <div class="swiper-slide"><img src="https://picsum.photos/1920" alt=""></div>
       </div>
       <!-- If we need pagination -->
       <div class="swiper-pagination"></div>
@@ -30,7 +28,7 @@
       <!-- If we need scrollbar -->
       <div class="swiper-scrollbar"></div>
   </div>
-<h1>{{date | date:'yyyy-MM-dd HH:mm:ss'}}</h1>
+<h1 class="cloak">{{date | date:'yyyy-MM-dd HH:mm:ss'}}</h1>
 <h2>{{city }} {{  temp}} {{ weather.weather[0].description}} {{}}<div class="icon"  style="background-image:url(img/weather/{{weather.weather[0].icon}}@2x.png)"></div></h2>
 
 <ol><li ng-repeat="x in tasks track by $index">{{x}} <div class="del" ng-click="data.removeItem($index)">x</div></li></ol></h1>

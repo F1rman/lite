@@ -7,7 +7,27 @@ app.config(['$compileProvider', function($compileProvider) {
 app.controller('Global', function($scope, $rootScope, $location, $mdDialog, $interval) {
   var stor = chrome.storage.sync;
   $(document).ready(()=>{
-    var mySwiper = new Swiper('.swiper-container' );
+    var min=1;
+   var max=999;
+    var mySwiper = new Swiper('.swiper-container',
+  {
+    pagination: {
+       el: '.swiper-pagination',
+       clickable: true,
+     },
+     navigation: {
+       nextEl: '.swiper-button-next',
+       prevEl: '.swiper-button-prev',
+     },
+  });
+  var random =   Math.floor(Math.random() * (+max - +min)) + +min;
+  
+  mySwiper.appendSlide('<div class="swiper-slide"><img src="https://picsum.photos/id/'+random+'/1920" alt="">Slide ' + 1 + '</div>');
+    document.querySelector('.swiper-button-next').addEventListener('click', function (e) {
+      var random =   Math.floor(Math.random() * (+max - +min)) + +min;
+     e.preventDefault();
+     mySwiper.appendSlide('<div class="swiper-slide"><img src="https://picsum.photos/id/'+random+'/1920" alt="">Slide ' + 1 + '</div>');
+   });
   })
   $scope.tasks = new Array()
   stor.get(null, function(items) {

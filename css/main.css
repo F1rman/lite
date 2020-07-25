@@ -26,4 +26,24 @@ html, body {
 * {
   outline: none; }
 
+.swiper-container .swiper-slide img {
+  width: 100%;
+  height: 100%; }
+
+.cloak {
+  position: fixed;
+  top: calc(50% - 100px);
+  z-index: 123;
+  left: calc(50% - 200px);
+  font-size: 60px;
+  display: flex;
+  padding: 20px;
+  box-sizing: border-box;
+  text-shadow: 0 0 10px;
+  color: white;
+  width: 400px;
+  height: 200px;
+  background: rgba(0, 0, 0, 0.19);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); }
+
 /*# sourceMappingURL=main.css.map */
