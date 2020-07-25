@@ -6,33 +6,45 @@ app.config(['$compileProvider', function($compileProvider) {
 }]);
 app.controller('Global', function($scope, $rootScope, $location, $mdDialog, $interval) {
   var stor = chrome.storage.sync;
-  $(document).ready(()=>{
-    var min=1;
-   var max=999;
-    var mySwiper = new Swiper('.swiper-container',
-  {
-    pagination: {
-       el: '.swiper-pagination',
-       clickable: true,
-     },
-     navigation: {
-       nextEl: '.swiper-button-next',
-       prevEl: '.swiper-button-prev',
-     },
-  });
-  $scope.newSlide = ()=>{
-    var random =   Math.floor(Math.random() * (+max - +min)) + +min;
-    mySwiper.appendSlide('<div class="swiper-slide"><img id="img'+random+'" src="https://picsum.photos/id/'+random+'/1920"   alt="">Slide ' + 1 + '</div>');
-    $("#img"+random+"").on("error", function () {
-        $(this).attr("src", "https://picsum.photos/1920");
+  $(document).ready(() => {
+    var min = 1;
+    var max = 999;
+    var mySwiper = new Swiper('.swiper-container', {
+      autoplay: {
+        delay: 30000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
     });
-  }
+    var random = Math.floor(Math.random() * (+max - +min)) + +min;
+    mySwiper.appendSlide('<div class="swiper-slide" ><img   id="img' + random + '" src="https://picsum.photos/id/' + random + '/1920"   alt=""></div>');
+    $("#img" + random + "").on("error", function() {
+      $(this).attr("src", "https://picsum.photos/1920");
+    });
+    $scope.newSlide = () => {
+      var random = Math.floor(Math.random() * (+max - +min)) + +min;
+      mySwiper.appendSlide('<div class="swiper-slide" ><img   id="img' + random + '" src="https://picsum.photos/id/' + random + '/1920"   alt=""></div>');
+      $("#img" + random + "").on("error", function() {
+        $(this).attr("src", "https://picsum.photos/1920");
+      });
+      console.log(mySwiper.slides);
+      setTimeout(function() {
+        mySwiper.removeSlide(0);
+      }, 300);
+    }
 
-$scope.newSlide()
-    document.querySelector('.swiper-button-next').addEventListener('click', function (e) {
-     e.preventDefault();
-$scope.newSlide()
-   });
+    document.querySelector('.swiper-button-next').addEventListener('click', function(e) {
+      e.preventDefault();
+
+      $scope.newSlide()
+    });
 
   })
 
@@ -76,7 +88,7 @@ $scope.newSlide()
     $scope.$apply()
   }, 1000);
 
-//Location
+  //Location
   navigator.geolocation.getCurrentPosition(function(loc) {
     $scope.latitude = loc.coords.latitude;
     $scope.longitude = loc.coords.longitude;

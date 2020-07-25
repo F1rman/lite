@@ -6,7 +6,7 @@ body,
 html {
   margin: 0;
   padding: 0;
-  background-image: url("../img/bg.jpg");
+  background: #fff;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -16,6 +16,13 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   background-origin: content-box; }
+
+* {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none; }
 
 .icon {
   background-image: url("img/weather/01n.png");
