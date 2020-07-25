@@ -20,15 +20,22 @@ app.controller('Global', function($scope, $rootScope, $location, $mdDialog, $int
        prevEl: '.swiper-button-prev',
      },
   });
-  var random =   Math.floor(Math.random() * (+max - +min)) + +min;
-  
-  mySwiper.appendSlide('<div class="swiper-slide"><img src="https://picsum.photos/id/'+random+'/1920" alt="">Slide ' + 1 + '</div>');
+  $scope.newSlide = ()=>{
+    var random =   Math.floor(Math.random() * (+max - +min)) + +min;
+    mySwiper.appendSlide('<div class="swiper-slide"><img id="img'+random+'" src="https://picsum.photos/id/'+random+'/1920"   alt="">Slide ' + 1 + '</div>');
+    $("#img"+random+"").on("error", function () {
+        $(this).attr("src", "https://picsum.photos/1920");
+    });
+  }
+
+$scope.newSlide()
     document.querySelector('.swiper-button-next').addEventListener('click', function (e) {
-      var random =   Math.floor(Math.random() * (+max - +min)) + +min;
      e.preventDefault();
-     mySwiper.appendSlide('<div class="swiper-slide"><img src="https://picsum.photos/id/'+random+'/1920" alt="">Slide ' + 1 + '</div>');
+$scope.newSlide()
    });
+
   })
+
   $scope.tasks = new Array()
   stor.get(null, function(items) {
     console.log(items.tasks);
@@ -69,11 +76,12 @@ app.controller('Global', function($scope, $rootScope, $location, $mdDialog, $int
     $scope.$apply()
   }, 1000);
 
-
+//Location
   navigator.geolocation.getCurrentPosition(function(loc) {
     $scope.latitude = loc.coords.latitude;
     $scope.longitude = loc.coords.longitude;
   });
+  // weather
   setTimeout(function() {
     $.getJSON('https://api.openweathermap.org/data/2.5/weather?lat=' + Math.round($scope.latitude) + '&lon=' + Math.round($scope.longitude) + '&units=metric&appid=91d758bf91a800494495c0d2eec1ce73', function(data) {
       $scope.weather = data;
