@@ -16,6 +16,12 @@ background-repeat: no-repeat;
 background-size: cover;
 background-origin: content-box;
 }
-
+.icon{
+  background-image: url(img/weather/01n.png);
+width: 50px;
+height: 50px;
+background-repeat: no-repeat;
+background-size: contain;
+}
 * {
   outline: none; }

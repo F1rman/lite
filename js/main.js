@@ -6,7 +6,9 @@ app.config(['$compileProvider', function($compileProvider) {
 }]);
 app.controller('Global', function($scope, $rootScope, $location, $mdDialog, $interval) {
   var stor = chrome.storage.sync;
-
+  $(document).ready(()=>{
+    var mySwiper = new Swiper('.swiper-container' );
+  })
   $scope.tasks = new Array()
   stor.get(null, function(items) {
     console.log(items.tasks);
@@ -51,12 +53,13 @@ app.controller('Global', function($scope, $rootScope, $location, $mdDialog, $int
   navigator.geolocation.getCurrentPosition(function(loc) {
     $scope.latitude = loc.coords.latitude;
     $scope.longitude = loc.coords.longitude;
-    console.log($scope.latitude);
-
   });
   setTimeout(function() {
-    $.getJSON('https://api.openweathermap.org/data/2.5/weather?lat=' + Math.round($scope.latitude) + '&lon=' + Math.round($scope.longitude) + '&appid=91d758bf91a800494495c0d2eec1ce73', function(data) {
-      $scope.weather = data
+    $.getJSON('https://api.openweathermap.org/data/2.5/weather?lat=' + Math.round($scope.latitude) + '&lon=' + Math.round($scope.longitude) + '&units=metric&appid=91d758bf91a800494495c0d2eec1ce73', function(data) {
+      $scope.weather = data;
+      $scope.city = $scope.weather.name;
+      $scope.temp = Math.round($scope.weather.main.temp);
+      $scope.cloud = $scope.weather
     });
   }, 10);
 
