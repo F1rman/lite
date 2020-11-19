@@ -33,21 +33,23 @@ html {
 
 .wrap_change {
   position: fixed;
-  bottom: 0;
-  right: 0;
-  border-radius: 20px 0 0 0;
-  background: #2b2b2b;
+  bottom: 25px;
+  right: 25px;
+  background: rgba(255, 255, 255, 0.8);
   width: 110px;
-  height: 50px;
+  height: 45px;
   z-index: 2;
   display: flex;
   padding: 0 10px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
   .wrap_change .change_bg {
     background-image: url("/img/repeat.svg");
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     margin: 8px;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
     .wrap_change .change_bg:hover {
@@ -88,8 +90,8 @@ section {
   section .volume {
     background-image: url("/img/mute.svg");
     background-size: contain;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     z-index: 3;
     top: 0;
     right: 0;
@@ -107,7 +109,9 @@ section {
   left: 0;
   top: 0; }
   .search .search_input {
-    position: relative; }
+    position: relative;
+    display: flex;
+    align-items: center; }
   .search .ico_search {
     position: absolute;
     width: 30px;
@@ -123,7 +127,6 @@ section {
     right: 10px;
     width: 30px;
     fill: #818181;
-    top: 5px;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     opacity: 0;
@@ -137,13 +140,11 @@ section {
   .search .q {
     padding: 0 50px;
     width: 500px;
-    height: 40px;
+    height: 45px;
     border: none;
     outline: none;
-    background: #2b2b2b;
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.8);
     color: #818181;
-    box-shadow: inset 0 0 2px #4c4c4c, 0 0 1px #4c4c4c;
     font-size: 16px;
     display: flex;
     justify-content: center;
