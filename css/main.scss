@@ -50,23 +50,21 @@ html {
   z-index: 2;
 
   .change_bg {
-    background: url("/img/repeat.svg");
+    background-image:  url("/img/repeat.svg");
     cursor: pointer;
     width: 30px;
     height: 30px;
     margin: 50px;
-    transform: rotate(20deg);
-    transition: all 0.4s linear;
+    transition: all 0.1s linear;
 
     &:hover {
       filter: drop-shadow(2px 4px 6px black);
     }
-
-    &.rotate_start {
-      transform: rotate(20deg);
-      transition: all 0.4s linear;
+    &.disabled{
+      pointer-events: none;
+      transition: all 0.1s linear;
+      background: url("/img/repeat0.svg");
     }
-
     &.rotate {
       animation: spin 4s linear infinite;
       transition: all 0.4s linear;
@@ -91,7 +89,8 @@ html {
 }
 
 .blur_down {
-  filter: blur(3px);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      filter: brightness(0.5);
 }
 
 section {
@@ -101,6 +100,27 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  .volume{
+    background-image: url('/img/mute.svg');
+    background-size: contain;
+position: fixed;
+width: 30px;
+height: 30px;
+z-index: 3;
+top: 0;
+right: 0;
+transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+cursor: pointer;
+margin: 50px;
+&.active{
+  background-image: url('/img/volume.svg');
+}
+  &:hover{
+    filter: drop-shadow(2px 4px 6px black);
+
+  }
+  }
+
 }
 
 .search {
@@ -130,10 +150,11 @@ section {
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     opacity: 0;
-
+  visibility: hidden;
     &.active {
       opacity: 1;
       transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      visibility: visible;
     }
   }
 

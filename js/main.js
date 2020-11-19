@@ -1,41 +1,65 @@
-
-
-$(document).ready(()=>{
+$(document).ready(() => {
   var sound;
-$('#search').keyup(()=>{
-  if ($('#search').val()!='') {
-    $('.ico_clear').addClass('active')
+  var def_volume;
+
+  if (localStorage.getItem('volume')) {
+    def_volume = Number(localStorage.getItem('volume'));
+  } else {
+    def_volume = 0;
+    localStorage.setItem('volume', '0');
   }
-  else {
-    $('.ico_clear').removeClass('active')
+  if (def_volume == 1) {
+    $('.volume').addClass('active')
+
+  } else {
+    $('.volume').removeClass('active')
 
   }
-})
-
-  $('.ico_clear').click(()=>{
+  $('#search').keyup(() => {
+    if ($('#search').val() != '') {
+      $('.ico_clear').addClass('active')
+    } else {
       $('.ico_clear').removeClass('active')
+
+    }
+  })
+  $('.volume').click(() => {
+    $('.volume').toggleClass('active')
+    def_volume == 1 ? def_volume = 0 : def_volume = 1
+    localStorage.setItem('volume', def_volume.toString());
+  })
+  $('.ico_clear').click(() => {
+    $('.ico_clear').removeClass('active')
     $('#search').val('')
   })
-  $('.ico_search').click(()=>{
-  $('form.search').submit();
+  $('.ico_search').click(() => {
+    $('form.search').submit();
   })
   var coutn = 1;
-  $('.change_bg').click(()=>{
+  $('.change_bg').click(() => {
     $('.change_bg').addClass('rotate')
     coutn++
     var img = new Image();
+    $('.image').addClass('blur_down')
+
     $(img).one('load', function() {
-      $('.change_bg').removeClass('rotate')
-      $('.change_bg').addClass('rotate_start')
+      setTimeout(function() {
+        $('.change_bg').removeClass('rotate')
+
+      }, 100);
+      $('.change_bg').addClass('disabled')
+      setTimeout(function() {
+        $('.change_bg').removeClass('disabled')
+
+      }, 1200);
+      $('.image').removeClass('blur_down')
 
     });
-    img.src ='https://source.unsplash.com/1920x1080/?nature,water'
-    $('.image').addClass('blur_down')
-      // $('.bg'+(coutn-2)).remove()
-      $('.image').removeClass('blur_down')
-      $(img).addClass('bg bg'+coutn)
-      $('.image').append(img)
-})
+    img.src = 'https://source.unsplash.com/1920x1080/?nature,water'
+    // $('.bg'+(coutn-2)).remove()
+    $(img).addClass('bg bg' + coutn)
+    $('.image').append(img)
+  })
 
 
   // ---------
@@ -43,8 +67,8 @@ $('#search').keyup(()=>{
   // ---------
 
   var canvas = document.querySelector('canvas');
-      canvas.width = document.body.clientWidth;
-      canvas.height = document.body.clientHeight;
+  canvas.width = document.body.clientWidth;
+  canvas.height = document.body.clientHeight;
   var ctx = canvas.getContext('2d');
   var count = canvas.height;
   var bubbles = [];
@@ -84,11 +108,11 @@ $('#search').keyup(()=>{
       // first num = distance between waves
       // second num = wave height
       // third num = move the center of the wave away from the edge
-      bubbles[i].position.x = Math.sin(bubbles[i].count/bubbles[i].distanceBetweenWaves) * 50 + bubbles[i].xOff;
+      bubbles[i].position.x = Math.sin(bubbles[i].count / bubbles[i].distanceBetweenWaves) * 50 + bubbles[i].xOff;
       bubbles[i].position.y = bubbles[i].count;
       bubbles[i].render();
 
-      if(bubbles[i].count < 0 - bubbles[i].radius) {
+      if (bubbles[i].count < 0 - bubbles[i].radius) {
         bubbles[i].count = canvas.height + bubbles[i].yOff;
       } else {
         bubbles[i].count -= bubbleSpeed;
@@ -99,8 +123,8 @@ $('#search').keyup(()=>{
     // On Bubble Hover
     // ---------------
     for (var i = 0; i < bubbles.length; i++) {
-      if(mouseOffset.x > bubbles[i].position.x - bubbles[i].radius && mouseOffset.x < bubbles[i].position.x + bubbles[i].radius) {
-        if(mouseOffset.y > bubbles[i].position.y - bubbles[i].radius && mouseOffset.y < bubbles[i].position.y + bubbles[i].radius) {
+      if (mouseOffset.x > bubbles[i].position.x - bubbles[i].radius && mouseOffset.x < bubbles[i].position.x + bubbles[i].radius) {
+        if (mouseOffset.y > bubbles[i].position.y - bubbles[i].radius && mouseOffset.y < bubbles[i].position.y + bubbles[i].radius) {
           buble_sound()
           for (var a = 0; a < bubbles[i].lines.length; a++) {
             popDistance = bubbles[i].radius * 0.5;
@@ -126,7 +150,10 @@ $('#search').keyup(()=>{
   // ------------------
 
   var createBubble = function() {
-    this.position = {x: 0, y: 0};
+    this.position = {
+      x: 0,
+      y: 0
+    };
     this.radius = 20 + Math.random() * 6;
     this.xOff = Math.random() * canvas.width - this.radius;
     this.yOff = Math.random() * canvas.height;
@@ -142,14 +169,17 @@ $('#search').keyup(()=>{
     // Populate Lines
     for (var i = 0; i < popLines; i++) {
       var tempLine = new createLine();
-          tempLine.bubble = this;
-          tempLine.index = i;
+      tempLine.bubble = this;
+      tempLine.index = i;
 
       this.lines.push(tempLine);
     }
 
     this.resetPosition = function() {
-      this.position = {x: 0, y: 0};
+      this.position = {
+        x: 0,
+        y: 0
+      };
       this.radius = 8 + Math.random() * 6;
       this.xOff = Math.random() * canvas.width - this.radius;
       this.yOff = Math.random() * canvas.height;
@@ -161,14 +191,14 @@ $('#search').keyup(()=>{
 
     // Render the circles
     this.render = function() {
-      if(this.rotationDirection === 'forward') {
-        if(this.rotation < this.maxRotation) {
+      if (this.rotationDirection === 'forward') {
+        if (this.rotation < this.maxRotation) {
           this.rotation++;
         } else {
           this.rotationDirection = 'backward';
         }
       } else {
-        if(this.rotation > this.maxRotation * -1) {
+        if (this.rotation > this.maxRotation * -1) {
           this.rotation--;
         } else {
           this.rotationDirection = 'forward';
@@ -177,17 +207,17 @@ $('#search').keyup(()=>{
 
       ctx.save();
       ctx.translate(this.position.x, this.position.y);
-      ctx.rotate(this.rotation*Math.PI/180);
+      ctx.rotate(this.rotation * Math.PI / 180);
 
-      if(!this.popping) {
+      if (!this.popping) {
         ctx.beginPath();
         ctx.strokeStyle = '#8bc9ee';
         ctx.lineWidth = 1;
-        ctx.arc(0, 0, this.radius - 3, 0, Math.PI*1.5, true);
+        ctx.arc(0, 0, this.radius - 3, 0, Math.PI * 1.5, true);
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.arc(0, 0, this.radius, 0, Math.PI*2, false);
+        ctx.arc(0, 0, this.radius, 0, Math.PI * 2, false);
         ctx.stroke();
 
       }
@@ -197,11 +227,11 @@ $('#search').keyup(()=>{
 
       // Draw the lines
       for (var a = 0; a < this.lines.length; a++) {
-        if(this.lines[a].popping) {
-          if(this.lines[a].lineLength < popDistance && !this.lines[a].inversePop) {
+        if (this.lines[a].popping) {
+          if (this.lines[a].lineLength < popDistance && !this.lines[a].inversePop) {
             this.lines[a].popDistance += 0.06;
           } else {
-            if(this.lines[a].popDistance >= 0) {
+            if (this.lines[a].popDistance >= 0) {
               this.lines[a].inversePop = true;
               this.lines[a].popDistanceReturn += 1;
               this.lines[a].popDistance -= 0.03;
@@ -267,16 +297,16 @@ $('#search').keyup(()=>{
       ctx.strokeStyle = '#8bc9ee';
       ctx.lineWidth = 2;
       ctx.moveTo(this.x, this.y);
-      if(this.x < this.bubble.position.x) {
+      if (this.x < this.bubble.position.x) {
         this.endX = this.lineLength * -1;
       }
-      if(this.y < this.bubble.position.y) {
+      if (this.y < this.bubble.position.y) {
         this.endY = this.lineLength * -1;
       }
-      if(this.y === this.bubble.position.y) {
+      if (this.y === this.bubble.position.y) {
         this.endY = 0;
       }
-      if(this.x === this.bubble.position.x) {
+      if (this.x === this.bubble.position.x) {
         this.endX = 0;
       }
       ctx.lineTo(this.x + this.endX, this.y + this.endY);
@@ -314,12 +344,12 @@ $('#search').keyup(()=>{
 
   }
   var dd;
-  var buble_sound = ()=>{
+  var buble_sound = () => {
     clearTimeout(dd)
-   dd =   setTimeout(function () {
-    sound = new Audio('mp3/buble'+getRandomInt(1,3)+'.mp3')
-    sound.volume = (0.2)
-    sound.play()
+    dd = setTimeout(function() {
+      sound = new Audio('mp3/buble' + getRandomInt(1, 3) + '.mp3')
+      sound.volume = def_volume
+      sound.play()
     }, 30);
-    }
+  }
 })
