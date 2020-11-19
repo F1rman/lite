@@ -33,19 +33,22 @@ html {
 
 .wrap_change {
   position: fixed;
-  bottom: -90px;
-  right: -90px;
-  border-radius: 50%;
+  bottom: 0;
+  right: 0;
+  border-radius: 20px 0 0 0;
   background: #2b2b2b;
-  width: 200px;
-  height: 200px;
-  z-index: 2; }
+  width: 110px;
+  height: 50px;
+  z-index: 2;
+  display: flex;
+  padding: 0 10px;
+  box-sizing: border-box; }
   .wrap_change .change_bg {
     background-image: url("/img/repeat.svg");
     cursor: pointer;
     width: 30px;
     height: 30px;
-    margin: 50px;
+    margin: 8px;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
     .wrap_change .change_bg:hover {
       opacity: 0.7; }
@@ -85,7 +88,6 @@ section {
   section .volume {
     background-image: url("/img/mute.svg");
     background-size: contain;
-    position: fixed;
     width: 30px;
     height: 30px;
     z-index: 3;
@@ -93,7 +95,8 @@ section {
     right: 0;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
-    margin: 50px; }
+    margin: 8px;
+    cursor: pointer; }
     section .volume.active {
       background-image: url("/img/volume.svg"); }
     section .volume:hover {
