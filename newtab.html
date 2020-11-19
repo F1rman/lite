@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="Artmoney">
+<html lang="en" >
 
 <head>
   <meta charset="UTF-8">
@@ -7,54 +7,35 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Lite</title>
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/angular_material.css">
-  <link rel="stylesheet" href="css/swiper.css">
   <script src="js/jq.js"></script>
-  <script src="js/angular.js"></script>
 </head>
 
-<body ng-controller="Global as ctrl" ng-cloak>
-  <div class="swiper-container" ng-cloak>
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-      <!-- Slides -->
-      <div class="swiper-slide"><img src="https://picsum.photos/1920" alt=""></div>
-    </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
-
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-
-    <!-- If we need scrollbar -->
-    <div class="swiper-scrollbar"></div>
+<body>
+  <canvas id="bubles"></canvas>
+  <div class="image">
+    <img src="img/bg.jpg"  class="bg bg0" alt="nature">
+    <img src="https://source.unsplash.com/1920x1080/?nature,water"  class="bg bg1" alt="nature">
   </div>
-  <h1 class="cloak">{{date | date:' HH:mm:ss'}}{{date | date:'  yyyy-MM-dd'}}</h1>
-  <div class="weather">
-    <span> {{city }}</span>
-    <span> {{ temp}}</span>
-    <span>{{ weather.weather[0].description}}</span>
+  <section>
 
-    <div class="icon" style="background-image:url(img/weather/{{weather.weather[0].icon}}@2x.png)"></div>
+
+  <form  autocomplete="off" method="get" class="search" action="http://www.google.com/search">
+
+  <div >
+    <div class="search_input">
+  <svg focusable="false" class="ico_search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+  <svg focusable="false"  class="ico_clear" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+
+  <input type="text" class="q" id="search"  name="q" size="25"  maxlength="255" value="" />
+</div>
+
   </div>
-  <div class="toDoList">
-    <ol>
-      <li ng-repeat="x in tasks track by $index">{{x}}
-        <div class="del" ng-click="data.removeItem($index)">x</div>
-      </li>
-    </ol>
-    <md-input-container>
-      <label>New task</label>
-      <input ng-model="task" type="text">
-    </md-input-container>
-    <md-button class="md-raised" ng-disabled="!task" ng-click="data.pushNew()">Button</md-button>
+
+  </form>
+  <div class="wrap_change">
+  <div class="change_bg"></div>
   </div>
-  <script src="js/swiper.js"></script>
-  <script src="js/material.js"></script>
-  <script src="js/animate.js"></script>
-  <script src="js/angular-aria.js"></script>
-  <script src="js/angular-messages.js"></script>
+    </section>
   <script src="js/main.js"></script>
 </body>
 
