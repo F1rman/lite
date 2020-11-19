@@ -141,9 +141,8 @@ align-items: center;
 
   .ico_search {
     position: absolute;
-    width: 30px;
+    width: 24px;
     fill: #818181;
-    top: 5px;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     left: 10px;
     cursor: pointer;
@@ -156,7 +155,7 @@ align-items: center;
   .ico_clear {
     position: absolute;
     right: 10px;
-    width: 30px;
+    width: 24px;
     fill: #818181;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
