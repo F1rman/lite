@@ -26,11 +26,10 @@ html {
   -moz-user-select: -moz-none;
   -o-user-select: none;
   user-select: none;
-}
-
-* {
   outline: none;
 }
+
+
 
 #bubles {
   top: 0;
@@ -50,21 +49,23 @@ html {
   z-index: 2;
 
   .change_bg {
-    background-image:  url("/img/repeat.svg");
+    background-image: url("/img/repeat.svg");
     cursor: pointer;
     width: 30px;
     height: 30px;
     margin: 50px;
-    transition: all 0.1s linear;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 
     &:hover {
-      filter: drop-shadow(2px 4px 6px black);
+      opacity: 0.7;
     }
-    &.disabled{
+
+    &.disabled {
       pointer-events: none;
       transition: all 0.1s linear;
-      background: url("/img/repeat0.svg");
+      opacity: 0.5;
     }
+
     &.rotate {
       animation: spin 4s linear infinite;
       transition: all 0.4s linear;
@@ -90,7 +91,7 @@ html {
 
 .blur_down {
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      filter: brightness(0.5);
+  filter: brightness(0.5);
 }
 
 section {
@@ -100,27 +101,26 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  .volume{
-    background-image: url('/img/mute.svg');
+
+  .volume {
+    background-image: url("/img/mute.svg");
     background-size: contain;
-position: fixed;
-width: 30px;
-height: 30px;
-z-index: 3;
-top: 0;
-right: 0;
-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-cursor: pointer;
-margin: 50px;
-&.active{
-  background-image: url('/img/volume.svg');
-}
-  &:hover{
-    filter: drop-shadow(2px 4px 6px black);
-
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    margin: 50px;
+    &.active {
+      background-image: url("/img/volume.svg");
+    }
+    &:hover {
+    opacity: 0.7
+    }
   }
-  }
-
 }
 
 .search {
@@ -137,8 +137,13 @@ margin: 50px;
     width: 30px;
     fill: #818181;
     top: 5px;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     left: 10px;
     cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 
   .ico_clear {
@@ -150,11 +155,16 @@ margin: 50px;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     opacity: 0;
-  visibility: hidden;
+    visibility: hidden;
+
     &.active {
       opacity: 1;
       transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
       visibility: visible;
+    }
+
+    &:hover {
+      opacity: 0.7;
     }
   }
 
@@ -174,12 +184,11 @@ margin: 50px;
     align-items: center;
   }
 }
-
 @keyframes spin {
-  0%{
+  0% {
     transform: rotate(0deg);
-
   }
+
   100% {
     transform: rotate(-360deg);
   }

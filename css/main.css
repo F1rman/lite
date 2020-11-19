@@ -22,9 +22,7 @@ html {
   -khtml-user-select: none;
   -moz-user-select: -moz-none;
   -o-user-select: none;
-  user-select: none; }
-
-* {
+  user-select: none;
   outline: none; }
 
 #bubles {
@@ -48,13 +46,13 @@ html {
     width: 30px;
     height: 30px;
     margin: 50px;
-    transition: all 0.1s linear; }
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
     .wrap_change .change_bg:hover {
-      filter: drop-shadow(2px 4px 6px black); }
+      opacity: 0.7; }
     .wrap_change .change_bg.disabled {
       pointer-events: none;
       transition: all 0.1s linear;
-      background: url("/img/repeat0.svg"); }
+      opacity: 0.5; }
     .wrap_change .change_bg.rotate {
       animation: spin 4s linear infinite;
       transition: all 0.4s linear; }
@@ -99,7 +97,7 @@ section {
     section .volume.active {
       background-image: url("/img/volume.svg"); }
     section .volume:hover {
-      filter: drop-shadow(2px 4px 6px black); }
+      opacity: 0.7; }
 
 .search {
   z-index: 2;
@@ -112,8 +110,11 @@ section {
     width: 30px;
     fill: #818181;
     top: 5px;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     left: 10px;
     cursor: pointer; }
+    .search .ico_search:hover {
+      opacity: 0.7; }
   .search .ico_clear {
     position: absolute;
     right: 10px;
@@ -128,6 +129,8 @@ section {
       opacity: 1;
       transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
       visibility: visible; }
+    .search .ico_clear:hover {
+      opacity: 0.7; }
   .search .q {
     padding: 0 50px;
     width: 500px;
