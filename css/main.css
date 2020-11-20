@@ -44,6 +44,7 @@ html {
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  border-radius: 24px;
   justify-content: space-between; }
   .wrap_change .change_bg {
     background-image: url("/img/repeat.svg");
@@ -147,7 +148,8 @@ section {
     font-size: 16px;
     display: flex;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    border-radius: 24px; }
 
 @keyframes spin {
   0% {
