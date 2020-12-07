@@ -1,3 +1,11 @@
+.image img{
+  opacity: 0;
+}
+.image *, .image{
+  transition: 0.3s ease-in-out !important;
+}
+
+
 @import url("https://fonts.googleapis.com/css?family=Comfortaa&display=swap");
 ::-webkit-scrollbar {
   display: none; }

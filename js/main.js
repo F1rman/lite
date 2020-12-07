@@ -1,4 +1,35 @@
-$(document).ready(() => {
+// suuper speed!
+function toDataURL(url, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      callback(reader.result);
+    }
+    reader.readAsDataURL(xhr.response);
+  };
+  xhr.open('GET', url);
+  xhr.responseType = 'blob';
+  xhr.send();
+}
+
+toDataURL('https://source.unsplash.com/user/erondu/1920x1080', function(dataUrl) {
+  console.log('RESULT:', dataUrl)
+  localStorage.setItem('nextImage', dataUrl);
+})
+setTimeout(function() {
+  $('.image img').css('opacity', '1')
+  var base = localStorage.getItem('nextImage');
+  if(base) $('.image img').attr('src', base)
+}, 1);
+
+
+
+
+
+
+
+// $(document).ready(() => {
   var sound;
   var def_volume;
 
@@ -42,7 +73,7 @@ $(document).ready(() => {
     var img = new Image();
     $('.image').addClass('blur_down')
 
-    $(img).one('load', function() {
+    $(img).on('load', function() {
       setTimeout(function() {
         $('.change_bg').removeClass('rotate')
 
@@ -55,11 +86,13 @@ $(document).ready(() => {
       $('.image').removeClass('blur_down')
 
     });
-    img.src = 'https://source.unsplash.com/1920x1080/?nature,water'
+    img.src = 'https://source.unsplash.com/user/erondu/1920x1080'
+    // img.src = 'https://source.unsplash.com/1920x1080/?nature,water'
     // $('.bg'+(coutn-2)).remove()
     $(img).addClass('bg bg' + coutn)
     $('.image').append(img)
   })
+
 
 
   // ---------
@@ -352,4 +385,4 @@ $(document).ready(() => {
       sound.play()
     }, 30);
   }
-})
+// })
