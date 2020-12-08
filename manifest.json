@@ -1,12 +1,11 @@
 {
-  "name": "Lite",
-  "description": "Lite new tab with tasks and clock",
-  "version": "1.0",
+  "name": "Bubble Tab — New Tab",
+  "description": "Lite and super fast new tab with creative wallpapers",
+  "version": "1.0.0",
   "incognito": "split",
   "permissions": ["activeTab", "storage"],
   "chrome_url_overrides": { "newtab": "newtab.html" },
   "content_scripts": [
-
     {
 
       "js": [
